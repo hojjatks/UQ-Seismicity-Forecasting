@@ -6,3 +6,5 @@ Induced Seismicity Forecasting with Uncertainty Quantification: Application to t
 
 * This code quantifies the epistemic and aleatoric uncertainty and combines them to give a range for the number of earthquakes in each time bin for a desired confidence level. These codes are for Examples 2 and 3 Introduced in Appendix 3 of the paper.
 
+![](https://github.com/hojjatks/UQ-Seismicity-Forecasting/blob/master/Figs/Timeseriesmonthly.png)
+
