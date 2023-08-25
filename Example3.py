@@ -8,7 +8,8 @@ Created on Thu Aug 10 11:26:17 2023
 
 
 ## To show how the method works, we solve a simple example. In a very simple model we assume that seimicity increases linearly with time: 
-## R(t)=R0+a*(t) where R0, a are constants but unknown. Because they are, they would lead to epistemic uncertainity. Also, since the process is a Poisson process we have aleatoric uncertainity on top
+## R(t)=R0+a*(t) wherly with time: 
+## R(t)=R0+a*(t) where R0, a are constants but unknown. Becaue R0, a are constants but unknown. Because they are unknown, they would lead to epistemic uncertainity. Also, since the process is a Poisson process we have aleatoric uncertainity on top
 ## Now there are two parameters to invert for, R0 and a (assuming model family with the form R0+a*(t))
 
 #%% Importing Libraries
@@ -47,8 +48,8 @@ fig = plt.figure(figsize=(3.7, 2.8))# Plotting the True rate and the Catalog (on
 plt.rc('font',family='Serif')
 plt.rcParams.update({'font.family':'Serif'})
 ax = fig.add_subplot(1, 1, 1)
-ax.step(Time_year,True_rate_to_plot,label='True Rate')
-ax.step(Time_year,Realization_to_plot,label='Synthetic Catalog')
+ax.step(Timevector,True_rate,label='True Rate')
+ax.step(Timevector,Realization,label='Synthetic Catalog',alpha=.5)
 ax.set_xlabel('Time')
 ax.set_ylabel('Number/Rate of events')
 ax.legend(frameon=False)
@@ -134,7 +135,7 @@ for i in range(MinR.size):
 
 
 
-ax.step(Timevector,Confmin,color='black',label='{:.1f}% Confidence Bound'.format(conf))
+ax.step(Timevector,Confmin,color='black',label=r"$\geq$"+'{:.1f}% Confidence Bound'.format(conf))
 ax.step(Timevector,Realization,label='Synthetic Catalog',color='blue')  
 
 ax.step(Timevector,MLE_number,label=r'$\mathbf {h}^{MLE}$',color='cyan')
@@ -144,9 +145,12 @@ ax.set_ylabel(r"Number/rate of events",fontname=custom_font,size=FontSize)
 plt.axvspan(Timevector[N_train],Tmax, color='black', alpha=0.5, lw=0)
 ax.set_xlim(left=Tmin,right=Tmax)
 ax.set_ylim(top=20)
-leg=ax.legend(frameon=False,fontsize=FontSize)
+leg=ax.legend(frameon=False,fontsize=FontSize,loc='upper left')
 for lh in leg.legendHandles: 
     lh.set_alpha(1)
+
+plt.grid(False)
+
 fig.savefig('Figs/Timeseriesmonthly.png',bbox_inches = 'tight',dpi=700)
 #%% Quantifying the Uncertainity
 
@@ -165,6 +169,8 @@ plt.rcParams.update({'font.family':'Serif'})
 
 ax = fig.add_subplot(1, 2, 1)
 ax2=fig.add_subplot(1,2,2)
+ax.grid(False)
+ax2.grid(False)
 
 ax.set_xlabel(r"Time (year)",fontname=custom_font,size=FontSize)
 ax.set_ylabel(r"Number/rate of events",fontname=custom_font,size=FontSize)
@@ -230,7 +236,7 @@ plt.tight_layout()
     # fig.savefig('Qualitytogether.png', bbox_inches = 'tight',dpi=600)
   
 
-ax.text(1991,14,'(a)',ha="center", va="center", fontsize=FontSize,fontname=custom_font)
+ax.text(1991,15,'(a)',ha="center", va="center", fontsize=FontSize,fontname=custom_font)
 ax.set_xlim(left=Tmin,right=Tmax)
 ax.axvspan(Timevector[N_train],Tmax, color='black', alpha=0.5, lw=0)
 

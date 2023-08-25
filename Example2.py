@@ -6,7 +6,7 @@ Created on Tue Aug  8 11:39:45 2023
 @author: hkaveh
 """
 ## To show how the method works, we solve a simple example. In a very simple model we assume that seimicity increases linearly with time: 
-## R(t)=R0+a*(t) where R0, a are constants but unknown. Because they are, they would lead to epistemic uncertainity. Also, since the process is a Poisson process we have aleatoric uncertainity on top
+## R(t)=R0+a*(t) where R0, a are constants but unknown. Because they are unknown, they would lead to epistemic uncertainity. Also, since the process is a Poisson process we have aleatoric uncertainity on top
 ## Now there are two parameters to invert for, R0 and a (assuming model family with the form R0+a*(t))
 
 #%% Importing Libraries
@@ -117,7 +117,7 @@ for i in range(MinR.size):
     Confmin[i] =   +chi2.ppf(gamma/2,2*MinR[i])/2           # Eq 14
     Confmax[i]=   +  chi2.ppf(1-gamma/2,2*(MaxR[i]+1))/2    # Eq 14
 
-ax.step(Timevector,Confmin,color='black',label='{:.1f}% Confidence Bound'.format(conf))
+ax.step(Timevector,Confmin,color='black',label=r"$\geq$"+'{:.1f}% Confidence'.format(conf)+'\n Bound')
 ax.step(Timevector,Realization,label='Synthetic Catalog',color='blue')  
 
 ax.step(Timevector,MLE_number,label=r'$\mathbf {h}^{MLE}$',color='cyan')
@@ -129,6 +129,9 @@ ax.set_xlim(left=Tmin,right=Tmax)
 leg=ax.legend(frameon=False,fontsize=FontSize)
 for lh in leg.legendHandles: 
     lh.set_alpha(1)
+plt.grid(False)
+plt.gca().set_facecolor('none')
+
 fig.savefig('Figs/TimeseriesYearly.png',bbox_inches = 'tight',dpi=700)
 #%% Quantifying the Uncertainity
 
@@ -224,6 +227,8 @@ cb.set_label(label=r'Percent Confidence interval bound',size=FontSize,fontname="
 leg=ax.legend(frameon=False,fontsize=FontSize)
 for lh in leg.legendHandles: 
     lh.set_alpha(1)
+plt.gca().set_facecolor('none')
+plt.grid(False)
 
 fig.savefig('Figs/QualityYearly.png',bbox_inches = 'tight',dpi=700)
 
