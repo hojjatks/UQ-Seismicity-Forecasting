@@ -36,7 +36,7 @@ Timevector=np.linspace(Tmin,Tmax,(Tmax-Tmin)*12)
 Time_year=np.linspace(Tmin,Tmax,(Tmax-Tmin))
 TimeTrain=Timevector[0:N_train]
 
-True_values=np.array([-119.375,.75/12]) # True Values of R0 and a [R0,a]
+True_values=np.array([-1442.5/12,.75/12]) # True Values of R0 and a [R0,a]
 True_rate=True_values[0]+True_values[1]*Timevector
 Realization=np.random.poisson(lam=True_rate,size=np.size(True_rate))
 # For monthly data, to be able to see better, we aggerate data each year

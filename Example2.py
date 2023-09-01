@@ -32,7 +32,7 @@ N_train=15 # Number of years to be considered in the training set
 Timevector=np.linspace(Tmin,Tmax,Tmax-Tmin+1)
 TimeTrain=Timevector[0:N_train]
 
-True_values=np.array([-1487.5,.75]) # True Values of R0 and a [R0,a]
+True_values=np.array([-1442.5,.75]) # True Values of R0 and a [R0,a]
 True_rate=True_values[0]+True_values[1]*Timevector
 Realization=np.random.poisson(lam=True_rate,size=np.size(True_rate))
 
@@ -126,6 +126,7 @@ ax.set_xlabel(r"Time (year)",fontname=custom_font,size=FontSize)
 ax.set_ylabel(r"Number/rate of events",fontname=custom_font,size=FontSize)
 plt.axvspan(Timevector[N_train],Tmax, color='black', alpha=0.5, lw=0)
 ax.set_xlim(left=Tmin,right=Tmax)
+ax.set_ylim(top=120)
 leg=ax.legend(frameon=False,fontsize=FontSize)
 for lh in leg.legendHandles: 
     lh.set_alpha(1)

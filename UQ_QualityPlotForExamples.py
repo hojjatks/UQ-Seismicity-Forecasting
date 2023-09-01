@@ -37,7 +37,7 @@ ax.plot(CorrectPercent_yearly,Conflevels_yearly,'g+',label='Yearly analysis')
 
 ax.set_xlabel(r"Correct Percentage of Events",fontname=custom_font,size=FontSize)
 ax.set_ylabel(r"Confidence interval",fontname=custom_font,size=FontSize)
-ax.set_xlim(left=45,right=101)
+ax.set_xlim(left=45,right=100)
 ax.set_ylim(bottom=0,top=100)
 ax.legend(frameon=False,fontsize=FontSize)
 plt.tight_layout()
